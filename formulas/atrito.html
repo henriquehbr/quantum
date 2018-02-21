@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html manifest="../ifisica.appcache">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- AJUSTAR A PÁGINA A DIFERENTES TAMANHOS DE TELA -->
+	<title>iFísica | Força de Atrito</title>
+	<!-- CSS -->
+	<link rel="stylesheet" href="../css/material.min.css"> <!-- CSS DO MATERIAL UI -->
+	<link rel="stylesheet" href="../css/bootstrap.min.css"> <!-- CSS DO BOOTSTRAP -->
+	<link rel="stylesheet" href="../css/dialog-polyfill.css"> <!-- CSS DO DIALOG POLYFILL -->
+	<link rel="stylesheet" href="../css/pace-theme-flash.css"> <!-- CSS DO PACE -->
+	<!-- JS -->
+	<script src="../js/jquery-3.2.1.min.js"></script> <!-- JS DO JQUERY -->
+	<script src="../js/material.min.js"></script> <!-- JS DO MATERIAL UI -->
+	<script src="../js/bootstrap.min.js"></script> <!-- JS DO BOOTSTRAP -->
+	<script src="../js/dialog-polyfill.js"></script> <!-- JS DO DIALOG POLYFILL -->
+	<script src="../js/pace.min.js"></script> <!-- JS DO PACE -->
+
+	<style type="text/css">
+		
+	/* ICONES MATERIAL (FONTE) */
+	@font-face {
+	font-family: 'Material Icons';
+		font-style: normal;
+	  	font-weight: 400;
+	 	src: url(../fonts/MaterialIcons-Regular.eot); /* IE6-8 */
+	 	src: local('Material Icons'),
+	    	local('MaterialIcons-Regular'),
+	    	url(../fonts/MaterialIcons-Regular.woff2) format('woff2'),
+	    	url(../fonts/MaterialIcons-Regular.woff) format('woff'),
+	    	url(../fonts/MaterialIcons-Regular.ttf) format('truetype');
+	}
+
+	/* ROBOTO (FONTE) */
+	@font-face {
+		font-family: 'Roboto';
+		font-style: normal;
+		font-weight: 400;
+		src: url(../fonts/Roboto-Regular.ttf);
+	}
+
+	/* COR DE FUNDO DA PÁGINA */
+	body {
+		background-color: #e9ecef;
+	}
+
+	/* MARGEM NO CONTEUDO DAS ABAS */
+	.page-content {
+		margin: 16px;
+	}
+
+	/* LOGOTIPO DA JANELA SOBRE */
+	.logo {
+		width: 64px;
+		height: 64px;
+		margin: 0 16px 0 0;
+	}
+
+	/* AJUSTA O TAMANHO/MARGEM DAS CAIXAS DE TEXTO DA CALCULADORA */
+	.form-control {
+		min-width: 50%;
+		margin-bottom: 5px;
+	}
+
+	/* AJUSTA AS MARGENS DOS ALERTAS (BOOTSTRAP) */
+	.alert {
+		margin: 16px 0 0 0;
+	}
+
+	/* TEXTO "ATIVAR" NO ALERTA (BOOTSTRAP) */
+	.alert-link:hover {
+		text-decoration: underline;
+	}
+
+	/* VIDEOAULA */
+	#video {
+		width: 100%;
+		height: calc(80vh - 144px);
+		background-color: black;
+		margin-bottom: 10px;
+	}
+
+	/* EFEITO DE FADE */
+	html {
+		-webkit-animation: fadeEffect 1s;
+		animation: fadeEffect 1s; /* Fading effect takes 1 second */
+	}
+
+	@-webkit-keyframes fadeEffect {
+	    from {opacity: 0;}
+	    to {opacity: 1;}
+	}
+
+	@keyframes fadeEffect {
+	    from {opacity: 0;}
+	    to {opacity: 1;}
+	}
+
+	</style>
+
+</head>
+<body>
+
+	<!-- ########## MENU COM ABAS FIXAS ########## -->
+	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
+	  	<header class="mdl-layout__header">
+	    	<div class="mdl-layout__header-row">
+	      		<!-- TITULO -->
+	      		<span class="mdl-layout-title">Força de Atrito</span>
+	      		<!-- ADICIONA UM ESPAÇAMENTO, PARA ALINHAR A NAVEGAÇÃO A DIREITA -->
+	      		<div class="mdl-layout-spacer"></div>
+	      			<!-- BARRA DE NAVEGAÇÃO HORIZONTAL -->
+	      			<nav class="mdl-navigation mdl-layout--large">
+
+	      				<!-- BOTÃO DO MENU -->
+						<button id="demo-menu-lower-right" class="mdl-button mdl-js-button mdl-button--icon">
+						  	<i class="material-icons">more_vert</i>
+						</button>
+
+						<!-- OPÇÕES DO MENU -->
+						<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-right">
+						  	<li><a href="../index.html" class="mdl-menu__item">Página Inicial</a></li>
+						  	<li><a target="_blank" href="https://github.com/nsioficial/ifisica" class="mdl-menu__item">Repositório no Github</a></li>
+						  <li><a id="show-dialog" class="mdl-menu__item">Sobre o iFísica</a></li>
+						</ul>
+
+					<!-- FIM DA BARRA DE NAVEGAÇÃO HORIZONTAL -->
+	      			</nav>
+	   		 </div>
+
+			<!-- ########## SOBRE O IFISICA ########## -->
+			<dialog class="mdl-dialog">
+				<h4 class="mdl-dialog__title"><img class="logo" src="../img/logo-ifisica.png">iFísica</h4>
+				<div id="alertaCache" class="alert alert-success" role="alert">
+				  	...
+				</div>
+			   	<div class="mdl-dialog__content">
+			   		<p>
+			      		Um app desenvolvido na feira de ciencias de 2017 do IFTO Campus Palmas, para consultar formulas de física diretamente do seu smartphone, incluindo vídeo-aulas, métodos de resolução e uma calculadora interativa para solução de exercicíos mais complexos.
+			     	</p>
+			      	<hr>
+			      	<small>Projeto desenvolvido por:<br>
+			     		- <a target="_blank" href="https://henriquehbr.github.io">Henrique Borges</a> (Programação)<br>
+				 		- <a target="_blank" href="https://github.com/angeloecw">Angelo Emanuel</a> (Programação)<br>
+			 	    	- <a target="_blank" href="https://github.com/GiordanoBrandao-NSI">Giordano Bruno</a> (Programação)<br>
+			 	    	- <a target="_blank" href="#">Alexander Justus</a> (Produção das vídeo-aulas)<br>
+			 	    	- <a target="_blank" href="#">Luiz Felipe</a> (Produção das vídeo-aulas)<br></small>
+				</div>
+				<div class="mdl-dialog__actions">
+					<!-- BOTÃO OK -->
+			   		<button type="button" class="mdl-button close">OK</button>
+				</div>
+			</dialog>
+
+			<!-- ########## SOBRE O IFISICA (SCRIPT) ########## -->
+		<script>
+	    	var dialog = document.querySelector('dialog');
+	    	var btnMostrarDialog = document.querySelector('#show-dialog');
+	    	var alertaCache = document.getElementById('alertaCache');
+	    	var appCache = window.applicationCache;
+	    	if (! dialog.showModal) {
+	      		// ##### REGISTRA OS DIALOGS DA PÁGINA USANDO POLYFILL #####
+	      		dialogPolyfill.registerDialog(dialog);
+	    	}
+	    	// QUANDO O BOTÃO FOR CLICADO, A JANELA É ABERTA
+	    	btnMostrarDialog.addEventListener('click', function() {
+	      		dialog.showModal();
+	      		// ########## ANALISA O ESTADO DO CACHE DO SITE ##########
+	      		switch (appCache.status) {
+	      			// UNCACHED (SEM CACHE) == 0
+					case appCache.UNCACHED:
+					  	alertaCache.setAttribute('class', 'alert alert-danger');
+					    alertaCache.innerHTML = "Visualização offline desativada. " + "<a href='javascript:appCache.update();' class='alert-link'>Ativar</a>";
+					    break;
+					// IDLE (PARADO) == 1
+					case appCache.IDLE:
+					    alertaCache.setAttribute('class', 'alert alert-success');
+					    alertaCache.innerHTML = "Visualização offline funcionando! " + "<a href='javascript:appCache.update();' class='alert-link'>Recarregar</a>";
+					    break;
+					// CHECKING (CHECANDO) == 2
+					case appCache.CHECKING:
+					    alertaCache.setAttribute('class', 'alert alert-info');
+					    alertaCache.innerHTML = "Buscando atualizações...";
+					    break;
+					// DOWNLOADING (BAIXANDO) == 3
+					case appCache.DOWNLOADING:
+					    alertaCache.setAttribute('class', 'alert alert-primary');
+					    alertaCache.innerHTML = "Ativando visualização offline...";
+					    break;
+					// UPDATEREADY (ATUALIZAÇÃO DISPONIVEL) == 4
+					case appCache.UPDATEREADY:
+					    alertaCache.setAttribute('class', 'alert alert-warning');
+					    alertaCache.innerHTML = "Atualização da visualização offline disponível! " + "<a href='javascript:appCache.swapCache();' class='alert-link'>Atualizar</a>";
+					    break;
+					// OBSOLETE (OBSOLETO) == 5
+					case appCache.OBSOLETE:
+					    alertaCache.setAttribute('class', 'alert alert-dark');
+					    alertaCache.innerHTML = "Visualização offline obsoleta. " + "<a href='javascript:appCache.update();' class='alert-link'>Atualizar</a>";
+					    break;
+					default:
+					    alertaCache.setAttribute('class', 'alert alert-dark');
+					    alertaCache.innerHTML = "Erro desconhecido! " + "<a href='javascript:appCache.update();' class='alert-link'>Recarregar</a>";
+					    break;
+				};
+	    	});
+
+	    	// BOTÃO PARA FECHAR A JANELA
+	    	dialog.querySelector('.close').addEventListener('click', function() {
+	      		dialog.close();
+	    	});
+		</script>
+
+	    	<!-- ########## ABAS REGULÁVEIS ########## -->
+	    	<div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+		    	<a href="#fixed-tab-1" class="mdl-layout__tab is-active">Calcular</a>
+		    	<a href="#fixed-tab-2" class="mdl-layout__tab">Vídeo aula</a>
+		    	<a href="#fixed-tab-3" class="mdl-layout__tab">Informações</a>
+	    	</div>
+	  	</header>
+
+	  	<!-- ########## MENU LATERAL ########## -->
+	  	<div class="mdl-layout__drawer">
+	    	<span class="mdl-layout-title">iFísica</span>
+	    	<nav class="mdl-navigation">
+	      		<a class="mdl-navigation__link" href="peso.html">Força Peso</a>
+	      		<a class="mdl-navigation__link" href="atrito.html">Força de atrito</a>
+	      		<a class="mdl-navigation__link" href="elastica.html">Força elástica</a>
+	      		<a class="mdl-navigation__link" href="centripeta.html">Força centripeta</a>
+	      		<a class="mdl-navigation__link" href="forca.html">Trabalho de uma força</a>
+	    	</nav>
+	 	</div>
+
+	 	<!-- CONTEUDO DAS ABAS -->
+	  	<main class="mdl-layout__content">
+	    	<section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
+	      		<div class="page-content">
+	      			<!-- CONTEUDO DA ABA CALCULAR -->
+	      			<h1>Calcular Força de Atrito<br>
+	      			<small id="resposta">Resultado:</small></h1>
+					<input onkeyup="forcaAtrito()" id="valoratrito" class="form-control" type="number" placeholder="Coeficiente de atrito">
+					<input onkeyup="forcaAtrito()" id="valornormal" class="form-control" type="number" placeholder="Força normal"><br>
+	      			<!-- FIM DO CONTEUDO DA ABA CALCULAR -->
+	      		</div>
+	    	</section>
+	    	<section class="mdl-layout__tab-panel" id="fixed-tab-2">
+	      		<div class="page-content">
+	      			<!-- CONTEUDO DA VÍDEO AULA -->
+	      			<div id="video">
+	      				<!-- ##### VIDEO ##### -->
+	      			</div>
+	      			<h2>Vídeo-aula de Força de Atrito</h2>
+	      			<h5>A vídeo-aula a seguir apresenta todas as formulas e os conceitos da força de atrito.</h5>
+	      			<!-- FIM DO CONTEUDO DA VÍDEO AULA -->
+	      		</div>
+	    	</section>
+	    	<section class="mdl-layout__tab-panel" id="fixed-tab-3">
+	      		<div class="page-content">
+	      			<!-- CONTEUDO DA ABA INFORMAÇÕES -->
+	      			<h1>Força de Atrito</h1>
+	      			<hr>
+	      			<h4>
+	      				Até agora, para calcularmos a força, ou aceleração de um corpo, consideramos que as superfícies por onde este se deslocava, não exercia nenhuma força contra o movimento, ou seja, quando aplicada uma força, este se deslocaria sem parar. Mas sabemos que este é um caso idealizado. Por mais lisa que uma superfície seja, ela nunca será totalmente livre de atrito. Sempre que aplicarmos uma força a um corpo, sobre uma superfície, este acabará parando.<br><br>
+						É isto que caracteriza a força de atrito:<br><br>
+					</h4>
+	      			<ul>
+	      				<h5>
+	      					<li>Se opõe ao movimento;</li>
+							<li>Depende da natureza e da rugosidade da superfície (coeficiente de atrito);</li>
+							<li>É proporcional à força normal de cada corpo;</li>
+							<li>Transforma a energia cinética do corpo em outro tipo de energia que é liberada ao meio.</li>
+						</h5>
+	      			</ul><br>
+	      			<h4>
+	      				A força de atrito é calculada pela seguinte relação:<br><br>
+	      				<center><i>Fat = µ * n<br>
+						<small>Força de atrito = coeficiente de atrito * força normal</small></i></center><br>
+	      			</h4><br>
+
+	      			<h3>Atrito Estático e Dinámico (Cinético)</h3>
+	      			<hr>
+	      			<h4>
+	      				Quando empurramos um carro, é fácil observar que até o carro entrar em movimento é necessário que se aplique uma força maior do que a força necessária quando o carro já está se movimentando. Isto acontece pois existem dois tipo de atrito: o estático e o dinâmico.<br><br>
+	      			</h4>
+	      			<h3>Atrito Estático</h3>
+	      			<h4>
+	      				É aquele que atua quando não há deslizamento dos corpos.
+						A força de atrito estático máxima é igual a força mínima necessária para iniciar o movimento de um corpo.
+						Quando um corpo não está em movimento a força da atrito deve ser maior que a força aplicada, neste caso, é usado no cálculo um coeficiente de atrito estático:<br><br>
+						<center><i>Fat = µe * n<br>
+						<small>Força de atrito = coeficiente de atrito estático * força normal</small></i></center><br>
+	      			</h4>
+	      			<h3>Atrito Estático (Cinético)</h3>
+	      			<h4>
+	      				É aquele que atua quando há deslizamento dos corpos. Quando a força de atrito estático for ultrapassada pela força aplicada ao corpo, este entrará em movimento, e passaremos a considerar sua força de atrito dinâmico. A força de atrito dinâmico é sempre menor que a força aplicada, no seu cálculo é utilizado o coeficiente de atrito cinético:<br><br>
+	      				<center><i>Fat = µc * n<br>
+						<small>Força de atrito = coeficiente de atrito cinético * força normal</small></i></center><br>
+	      			</h4>
+	      			<!-- FIM DO CONTEÚDO DA ABA INFORMAÇÕES -->
+	      		</div>
+	    	</section>
+	  	</main>
+	</div>
+
+</body>
+
+<script type="text/javascript">
+	function forcaAtrito() {
+		var valorAtrito = document.getElementById('valoratrito').value; // VALOR DO COEFICIENTE ATRITO
+		var valorNormal = document.getElementById('valornormal').value; // VALOR DA FORÇA NORMAL
+		var resposta = document.getElementById('resposta'); // TEXTO QUE MOSTRA A RESPOSTA
+		var calcularResposta = parseFloat(valorAtrito) * parseFloat(valorNormal); // CALCULAR RESPOSTA
+		if (valorAtrito > 0 && valorNormal > 0) {
+			resposta.innerHTML = "Resultado: " + calcularResposta;
+		}
+	}
+</script>
+
+</html>	

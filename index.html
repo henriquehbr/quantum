@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- AJUSTAR A PÁGINA A DIFERENTES TAMANHOS DE TELA -->
+	<title>Quantum</title>
+	<!-- CSS -->
+	<link rel="stylesheet" href="css/material.min.css"> <!-- MATERIAL DESIGN LITE (CSS) -->
+	<link rel="stylesheet" href="css/bootstrap.min.css"> <!-- BOOTSTRAP 4 (CSS) -->
+	<link rel="stylesheet" href="css/dialog-polyfill.css"> <!-- DIALOG POLYFILL (CSS) -->
+	<link rel="stylesheet" href="css/pace-theme-flash.css"> <!-- PACE (CSS) -->
+    <link rel="stylesheet" href="css/animate.css"> <!-- ANIMATE.CSS -->
+	<!-- JS -->
+	<script src="js/jquery-3.2.1.min.js"></script> <!-- JQUERY -->
+    <script src="js/bootstrap.min.js"></script> <!-- BOOTSTRAP (JS) -->
+    <script src="js/particles.min.js"></script> <!-- PARTICLES.JS (JS) -->
+	<script src="js/material.min.js"></script> <!-- MATERIAL DESIGN LITE (JS) -->
+	<script src="js/dialog-polyfill.js"></script> <!-- DIALOG POLYFILL (JS) -->
+	<script src="js/fontawesome-all.min.js"></script> <!-- FONT AWESOME (JS) -->
+    <script src="js/pace.min.js"></script> <!-- PACE.JS (JS) -->
+
+	<style type="text/css">
+		
+	/* ICONES MATERIAL (FONTE) */
+	@font-face {
+	font-family: 'Material Icons';
+		font-style: normal;
+	  	font-weight: 400;
+	 	src: local('Material Icons'),
+	    	local('MaterialIcons-Regular'),
+	    	url(fonts/MaterialIcons-Regular.woff2) format('woff2'),
+	    	url(fonts/MaterialIcons-Regular.woff) format('woff'),
+	    	url(fonts/MaterialIcons-Regular.ttf) format('truetype');
+	}
+
+	/* ROBOTO (FONTE) */
+	@font-face {
+		font-family: 'Roboto';
+		font-style: normal;
+		font-weight: 400;
+		src: url(fonts/Roboto-Regular.ttf);
+	}
+
+    .jumbotron {
+        width: 100vw;
+        background: transparent;
+        text-align: center;
+    }
+
+	.btnFormula {
+		margin: 10px 5px;
+	}
+
+    .quantum-logo {
+        max-width: 100%;
+        height: auto;
+        width: auto;
+    }
+
+	/* LOGOTIPO DA JANELA SOBRE */
+	.logo {
+		width: 64px;
+		height: 64px;
+		margin: 0 16px 0 0;
+	}
+
+    .appBar {
+        background: linear-gradient(to bottom, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%);
+    }
+
+    #particles-js {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background-color: dodgerblue;
+        background-image: url('');
+        background-size: cover;
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+    }
+
+	</style>
+
+</head>
+<body>
+
+    <!-- particles.js container -->
+    <div id="particles-js"></div>
+
+	<!-- ########## MENU ########## -->
+	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+	  	<header class="mdl-layout__header mdl-layout__header--transparent appBar">
+	    	<div class="mdl-layout__header-row">
+	      		<!-- TITULO -->
+	      		<span class="mdl-layout-title">Quantum</span>
+	      		<!-- ADICIONA UM ESPAÇAMENTO, PARA ALINHAR A NAVEGAÇÃO A DIREITA -->
+	      		<div class="mdl-layout-spacer"></div>
+	      			<!-- BARRA DE NAVEGAÇÃO HORIZONTAL -->
+	      			<nav class="mdl-navigation mdl-layout--large">
+
+	      				<!-- BOTÃO DO MENU -->
+						<button id="demo-menu-lower-right" class="mdl-button mdl-js-button mdl-button--icon">
+						  	<i class="material-icons">more_vert</i>
+						</button>
+
+						<!-- OPÇÕES DO MENU -->
+						<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-right">
+						  	<li><a href="index.html" class="mdl-menu__item">Página Inicial</a></li>
+						  	<li><a target="_blank" href="https://github.com/henriquehbr/quantum" class="mdl-menu__item">Repositório no Github</a></li>
+						  <li><a id="show-dialog" class="mdl-menu__item">Sobre o Quantum</a></li>
+						</ul>
+
+	      			</nav>
+	    		</div>
+	  	</header>
+
+	  	<!-- ########## MENU LATERAL ########## -->
+	  	<div class="mdl-layout__drawer">
+	    	<span class="mdl-layout-title">Quantum</span>
+	    	<nav class="mdl-navigation">
+	      		<a class="mdl-navigation__link" href="formulas/peso.html">Tabela Periódica</a>
+	      		<a class="mdl-navigation__link" href="formulas/atrito.html">Conteúdo</a>
+	      		<a class="mdl-navigation__link" href="formulas/elastica.html">Jogo químico</a>
+	    	</nav>
+	  	</div>
+
+	  	<!-- ########## SOBRE O QUANTUM ########## -->
+		<dialog class="mdl-dialog animated fadeInDown">
+			<h4 class="mdl-dialog__title"><img class="logo" src="img/quantum-icon.svg">Quantum</h4>
+		   	<div class="mdl-dialog__content">
+		   		<p>
+		      		Plataforma de ensino desenvolvida por alunos do IFTO Campus Palmas, para consultar elementos de uma tabela periódica atualizada e interativa, com diversos métodos de solução para exercicíos comuns na química, incluindo um jogo relacionado ao conteúdo.
+		     	</p>
+		      	<hr>
+		      	<small>Projeto desenvolvido por:<br>
+		     		- <a target="_blank" href="https://henriquehbr.github.io">Henrique Borges</a> (Programação)<br>
+			 		- <a target="_blank" href="https://github.com/angeloecw">Angelo Emanuel</a> (Desenvolvimento da parte escrita)<br>
+		 	    	- <a target="_blank" href="https://github.com/GiordanoBrandao-NSI">Giordano Bruno</a> (Desenvolvimento da parte escrita)<br>
+			</div>
+			<div class="mdl-dialog__actions">
+				<!-- BOTÃO OK -->
+		   		<button type="button" class="mdl-button close">OK</button>
+			</div>
+		</dialog>
+
+		<!-- ########## SOBRE O QUANTUM (SCRIPT) ########## -->
+		<script>
+	    	var dialog = document.querySelector('dialog');
+	    	var btnMostrarDialog = document.querySelector('#show-dialog');
+	    	if (! dialog.showModal) {
+	      		// ##### REGISTRA OS DIALOGS DA PÁGINA USANDO POLYFILL #####
+	      		dialogPolyfill.registerDialog(dialog);
+	    	}
+	    	// QUANDO O BOTÃO FOR CLICADO, A JANELA É ABERTA
+	    	btnMostrarDialog.addEventListener('click', function() {
+	      		dialog.showModal();
+	    	});
+
+	    	// BOTÃO PARA FECHAR A JANELA
+	    	dialog.querySelector('.close').addEventListener('click', function() {
+	      		dialog.close();
+	    	});
+		</script>
+
+	  	<main class="mdl-layout__content">
+	  		<!-- ########## CONTEÚDO DA PÁGINA ########## -->
+	    	<div class="page-content">
+
+	    		<!-- ##### PÁGINA INICIAL ##### -->
+	    		<div class="jumbotron">
+				  	<img class="quantum-logo" src="img/quantum-logo.svg">
+				  	<hr class="my-4">
+				  	<p class="lead">
+
+				  		<!-- ########## BOTÕES ########## -->
+				  		<center>
+    				  		<div class="container">
+    						  	<div class="row">
+    						  		<!-- ##### TABELA PERIÓDICA ##### -->
+    						    	<div class="col-sm">
+    						      		<button onclick="location.href='formulas/peso.html';" type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored btnFormula">
+    						      			<i class="fas fa-table"></i> Tabela Periódica
+    									</button>
+    						    	</div>
+
+    						    	<!-- ##### CONTEÚDO ##### -->
+    						    	<div class="col-sm">
+    						      		<button onclick="location.href='formulas/atrito.html';" type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored btnFormula">
+    						      			<i class="fab fa-leanpub"></i> Conteúdo
+    									</button>
+    						    	</div>
+
+    						    	<!-- ##### JOGO QUÍMICO ##### -->
+    						    	<div class="col-sm">
+    						      		<button onclick="location.href='formulas/elastica.html';" type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored btnFormula">
+    						      			<i class="fas fa-gamepad"></i> Jogo Químico
+    									</button>
+    						    	</div>
+
+    						  	</div>
+    						</div>
+						</center>
+
+				  	</p>
+				</div>
+
+	    	</div>
+	  	</main>
+	</div>
+
+<script>
+    particlesJS.load('particles-js', 'js/particlesjs-config.json', function() {
+        $(".particles-js-canvas-el").addClass("animated zoomIn");
+    });
+</script>
+
+</body>
+
+</html>
