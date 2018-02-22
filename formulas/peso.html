@@ -8,14 +8,15 @@
 	<link rel="stylesheet" href="../css/bootstrap.min.css"> <!-- BOOTSTRAP 4 (CSS) -->
 	<link rel="stylesheet" href="../css/dialog-polyfill.css"> <!-- DIALOG POLYFILL (CSS) -->
 	<link rel="stylesheet" href="../css/pace-theme-flash.css"> <!-- PACE (CSS) -->
-    <link rel="stylesheet" href="../css/animate.css"> <!-- ANIMATE.CSS -->
+    <link rel="stylesheet" href="../css/animate.css"> <!-- ANIMATE.CSS (APENAS CSS) -->
 	<!-- JS -->
-	<script src="../js/jquery-3.3.1.min.js"></script> <!-- JQUERY -->
+	<script src="../js/jquery-3.3.1.min.js"></script> <!-- JQUERY (APENAS JS) -->
     <script src="../js/bootstrap.min.js"></script> <!-- BOOTSTRAP 4 (JS) -->
     <script src="../js/particles.min.js"></script> <!-- PARTICLES.JS (JS) -->
 	<script src="../js/material.min.js"></script> <!-- MATERIAL DESIGN LITE (JS) -->
+	<script src="../js/tippy.min.js"></script> <!-- TIPPY.JS (APENAS JS) -->
 	<script src="../js/dialog-polyfill.js"></script> <!-- DIALOG POLYFILL (JS) -->
-	<script src="../js/fontawesome-all.min.js"></script> <!-- FONT AWESOME (JS) -->
+	<script src="../js/fontawesome-all.min.js"></script> <!-- FONT AWESOME (APENAS JS) -->
     <script src="../js/pace.min.js"></script> <!-- PACE.JS (JS) -->
 
 	<style type="text/css">
@@ -37,7 +38,7 @@
 		font-family: 'Roboto';
 		font-style: normal;
 		font-weight: 400;
-		src: url(fonts/Roboto-Regular.ttf);
+		src: url(../fonts/Roboto-Regular.ttf);
 	}
 
     /* JUMBOTRON DO BOOTSTRAP */
@@ -64,6 +65,13 @@
 		margin: 0 16px 0 0;
 	}
 
+	/* CUSTOMIZA A CAIXA DE PESQUISA DA TABELA PERIÓDICA */
+	#pesquisarElementos {
+		padding: 8px;
+		margin-bottom: 5px;
+		font-size: 16px;
+	}
+
     /* EFEITO DE SOMBRA NA BARRA SUPERIOR */
     .mdl-layout__header--transparent {
         background: linear-gradient(to bottom, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%);
@@ -81,10 +89,11 @@
         background-repeat: no-repeat;
     }
 
-	/* TABELA PERIÓDICA */
+	/* ########## TABELA PERIÓDICA ########## */
 
 	body {
 		counter-reset: element;
+		text-align: center;
 	}
 
 	@font-face {
@@ -102,7 +111,7 @@
 	.periodic-table {
 		font-family: Phenomena, script;
 		display: grid;
-		width: 100vw;
+		width: 90vw;
 		grid-column-gap: .5vw;
 		grid-row-gap: .5vw;
 		padding-left: 0;
@@ -340,363 +349,367 @@
 	  		<!-- ########## CONTEÚDO DA PÁGINA ########## -->
 	    	<div class="page-content">
 
-	    		<ol class="periodic-table">
+	    		<!-- CAIXA DE PESQUISA -->
+	    		<input type="text" id="pesquisarElementos" onkeyup="pesquisarElementos()" class="form-control" placeholder="Pesquise um elemento...">
+
+	    		<!-- TABELA PERIÓDICA -->
+	    		<ol id="tabela-periodica" class="periodic-table">
 					<li class="hydrogen">
-					    <abbr title="Hydrogen">H</abbr>
+					    <abbr title="Hidrogênio">H</abbr>
 					</li>
 					<li id="helium" class="noble-gas">
-					    <abbr title="Helium">He</abbr>
+					    <abbr title="Hélio">He</abbr>
 					    <span>2</span>
 					</li>
 					<li class="alkali">
-					    <abbr title="Lithium">Li</abbr>
+					    <abbr title="Lítio">Li</abbr>
 					</li>
 					<li class="alkaline">
-					    <abbr title="Beryllium">Be</abbr>
+					    <abbr title="Berílio">Be</abbr>
 					</li>
 					<li id="boron" class="metalloid">
-					    <abbr title="Boron">B</abbr>
+					    <abbr title="Boro">B</abbr>
 					</li>
 					<li class="polyatomic-non-metal">
-					    <abbr title="Carbon">C</abbr>
+					    <abbr title="Carbono">C</abbr>
 					</li>
 					<li class="diatomic-nonmetal">
-					    <abbr title="Nitrogen">N</abbr>
+					    <abbr title="Nitrogênio">N</abbr>
 					</li>
 					<li class="diatomic-nonmetal">
-					    <abbr title="Oxygen">O</abbr>
+					    <abbr title="Oxigênio">O</abbr>
 					</li>
 					<li class="diatomic-nonmetal">
-					    <abbr title="Fluorine">F</abbr>
+					    <abbr title="Fluor">F</abbr>
 					</li>
 					<li class="noble-gas">
-					    <abbr title="Neon">Ne</abbr>
+					    <abbr title="Neônio">Ne</abbr>
 					</li>
 					<li class="alkali">
-					    <abbr title="Sodium">Na</abbr>
+					    <abbr title="Sódio">Na</abbr>
 					</li>
 					<li class="alkaline">
-					    <abbr title="Magnesium">Mg</abbr>
+					    <abbr title="Magnésio">Mg</abbr>
 					</li>
 					<li id="aluminium">
-					    <abbr title="Aluminium">Al</abbr>
+					    <abbr title="Aluminio">Al</abbr>
 					</li>
 					<li class="metalloid">
-					    <abbr title="Silicon">Si</abbr>
+					    <abbr title="Silicone">Si</abbr>
 					</li>
 					<li class="polyatomic-non-metal">
-					    <abbr title="Phosphorus">P</abbr>
+					    <abbr title="Fósforo">P</abbr>
 					</li>
 					<li class="polyatomic-non-metal">
-					    <abbr title="Sulphur">S</abbr>
+					    <abbr title="Enxofre">S</abbr>
 					</li>
 					<li class="diatomic-nonmetal">
-					    <abbr title="Chlorine">Cl</abbr>
+					    <abbr title="Cloro">Cl</abbr>
 					</li>
 					<li class="noble-gas">
-					    <abbr title="Argon">Ar</abbr>
+					    <abbr title="Argônio">Ar</abbr>
 					</li>
 					<li class="alkali">
-					    <abbr title="Potassium">K</abbr>
+					    <abbr title="Potássio">K</abbr>
 					</li>
 					<li class="alkaline">
-					    <abbr title="Calcium">Ca</abbr>
+					    <abbr title="Cálcio">Ca</abbr>
 					</li>
 					<li>
-					    <abbr title="Scandium">Sc</abbr>
+					    <abbr title="Escândio">Sc</abbr>
 					</li>
 					<li>
-					    <abbr title="Titanium">Ti</abbr>
+					    <abbr title="Titânio">Ti</abbr>
 					</li>
 					<li>
-					    <abbr title="Vanadium">Ti</abbr>
+					    <abbr title="Vanádio">Ti</abbr>
 					</li>
 					<li>
-					    <abbr title="Chromium">Cr</abbr>
+					    <abbr title="Cromo">Cr</abbr>
 					</li>
 					<li>
-					    <abbr title="Manganese">Mn</abbr>
+					    <abbr title="Manganês">Mn</abbr>
 					</li>
 					<li>
-					    <abbr title="Iron">Fe</abbr>
+					    <abbr title="Ferro">Fe</abbr>
 					</li>
 					<li>
-					    <abbr title="Cobalt">Co</abbr>
+					    <abbr title="Cobalto">Co</abbr>
 					</li>
 					<li>
-					    <abbr title="Nickel">Ni</abbr>
+					    <abbr title="Níquel">Ni</abbr>
 					</li>
 					<li>
-					    <abbr title="Copper">Cu</abbr>
+					    <abbr title="Cobre">Cu</abbr>
 					</li>
 					<li>
-					    <abbr title="Zinc">Zn</abbr>
+					    <abbr title="Zinco">Zn</abbr>
 					</li>
 					<li>
-					    <abbr title="Gallium">Ga</abbr>
+					    <abbr title="Gálio">Ga</abbr>
 					</li>
 					<li class="metalloid">
-					    <abbr title="Germanium">Ge</abbr>
+					    <abbr title="Germânio">Ge</abbr>
 					</li>
 					<li class="metalloid">
-					    <abbr title="Arsenic">As</abbr>
+					    <abbr title="Arsênico">As</abbr>
 					</li>
 					<li class="polyatomic-non-metal">
-					    <abbr title="Selenium">Se</abbr>
+					    <abbr title="Selênio">Se</abbr>
 					</li>
 					<li class="diatomic-nonmetal">
-					    <abbr title="Bromide">Br</abbr>
+					    <abbr title="Brometo">Br</abbr>
 					</li>
 					<li class="noble-gas">
-					    <abbr title="Krypton">Kr</abbr>
+					    <abbr title="Criptônio">Kr</abbr>
 					</li>
 					<li class="alkali">
-					    <abbr title="Rubidium">Rb</abbr>
+					    <abbr title="Rubidío">Rb</abbr>
 					</li>
 					<li class="alkaline">
-					    <abbr title="Strontium">Sr</abbr>
+					    <abbr title="Estrôncio">Sr</abbr>
 					</li>
 					<li>
-					    <abbr title="Yttrium">Y</abbr>
+					    <abbr title="Ítrio">Y</abbr>
 					</li>
 					<li>
-					    <abbr title="Zirconium">Zr</abbr>
+					    <abbr title="Zircônio">Zr</abbr>
 					</li>
 					<li>
-					    <abbr title="Niobium">Nb</abbr>
+					    <abbr title="Nióbio">Nb</abbr>
 					</li>
 					<li>
-					    <abbr title="Molybdenum">Mo</abbr>
+					    <abbr title="Molibdênio">Mo</abbr>
 					</li>
 					<li>
-					    <abbr title="Technetium">Tc</abbr>
+					    <abbr title="Tecnécio">Tc</abbr>
 					</li>
 					<li>
-					    <abbr title="Ruthenium">Ru</abbr>
+					    <abbr title="Rutênio">Ru</abbr>
 					</li>
 					<li>
-					    <abbr title="Rhodium">Ro</abbr>
+					    <abbr title="Ródio">Ro</abbr>
 					</li>
 					<li>
-					    <abbr title="Palladium">Pd</abbr>
+					    <abbr title="Paládio">Pd</abbr>
 					</li>
 					<li>
-					    <abbr title="Silver">Ag</abbr>
+					    <abbr title="Prata">Ag</abbr>
 					</li>
 					<li>
-					    <abbr title="Cadmium">Cd</abbr>
+					    <abbr title="Cádmio">Cd</abbr>
 					</li>
 					<li>
-					    <abbr title="Indium">In</abbr>
+					    <abbr title="Índio">In</abbr>
 					</li>
 					<li>
-					    <abbr title="Tin">Sn</abbr>
+					    <abbr title="Estanho">Sn</abbr>
 					</li>
 					<li class="metalloid">
-					    <abbr title="Antimony">Sb</abbr>
+					    <abbr title="Antimônio">Sb</abbr>
 					</li>
 					<li class="metalloid">
-					    <abbr title="Tellurium">Te</abbr>
+					    <abbr title="Telúrio">Te</abbr>
 					</li>
 					<li class="diatomic-nonmetal">
-					    <abbr title="Iodine">I</abbr>
+					    <abbr title="Iodo">I</abbr>
 					</li>
 					<li class="noble-gas">
-					    <abbr title="Xenon">Xe</abbr>
+					    <abbr title="Xenônio">Xe</abbr>
 					</li>
 					<li class="alkali">
-					    <abbr title="Caesium">Cs</abbr>
+					    <abbr title="Césio">Cs</abbr>
 					</li>
 					<li class="alkaline">
-					    <abbr title="Barium">Ba</abbr>
+					    <abbr title="Bário">Ba</abbr>
 					</li>
 					<li class="lanthanide">
-					    <abbr title="Lanthanum">La</abbr>
+					    <abbr title="Lantânio">La</abbr>
 					</li>
 					<li id="cerium" class="lanthanide">
-					     <abbr title="Cerium">Ce</abbr>
+					     <abbr title="Cério">Ce</abbr>
 					</li>
 					<li class="lanthanide">
-					    <abbr title="Praseodymium">Pr</abbr>
+					    <abbr title="Praseodímio">Pr</abbr>
 					</li>
 					<li class="lanthanide">
-					    <abbr title="Neodymium">Nd</abbr>
+					    <abbr title="Neodímio">Nd</abbr>
 					</li>
 					<li class="lanthanide">
-					    <abbr title="Promethium">Pm</abbr>
+					    <abbr title="Promécio">Pm</abbr>
 					</li>
 					<li class="lanthanide">
-					    <abbr title="Samarium">Sm</abbr>
+					    <abbr title="Samário">Sm</abbr>
 					</li>
 					<li class="lanthanide">
-					    <abbr title="Europium">Eu</abbr>
+					    <abbr title="Európio">Eu</abbr>
 					</li>
 					<li class="lanthanide">
-					    <abbr title="Gadolinium">Gd</abbr>
+					    <abbr title="Gadolínio">Gd</abbr>
 					</li>
 					<li class="lanthanide">
-					    <abbr title="Terbium">Td</abbr>
+					    <abbr title="Térbio">Td</abbr>
 					</li>
 					<li class="lanthanide">
-					    <abbr title="Dysprosium">Dy</abbr>
+					    <abbr title="Disprósio">Dy</abbr>
 					</li>
 					<li class="lanthanide">
-					    <abbr title="Holmium">Ho</abbr>
+					    <abbr title="Hólmio">Ho</abbr>
 					</li>
 					<li class="lanthanide">
-					    <abbr title="Erbium">Er</abbr>
+					    <abbr title="Érbio">Er</abbr>
 					</li>
 					<li class="lanthanide">
-					    <abbr title="Thulium">Tm</abbr>
+					    <abbr title="Túlio">Tm</abbr>
 					</li>
 					<li class="lanthanide">
-					    <abbr title="Ytterbium">Yb</abbr>
+					    <abbr title="Itérbio">Yb</abbr>
 					</li>
 					<li class="lanthanide">
-					    <abbr title="Lutetium">Lu</abbr>
+					    <abbr title="Lutécio">Lu</abbr>
 					</li>  
 					<li id="hafnium">
-					    <abbr title="Hafnium">Hf</abbr>
+					    <abbr title="Hafránio">Hf</abbr>
 					</li>
 					<li>
-					    <abbr title="Tantalum">Ta</abbr>
+					    <abbr title="Tântalo">Ta</abbr>
 					</li>
 					<li>
-					    <abbr title="Tungsten">W</abbr>
+					    <abbr title="Tungstênio">W</abbr>
 					</li>
 					<li>
-					    <abbr title="Rhenium">Re</abbr>
+					    <abbr title="Rénio">Re</abbr>
 					</li>
 					<li>
-					    <abbr title="Osmium">Os</abbr>
+					    <abbr title="Ósmium">Os</abbr>
 					</li> 
 					<li>
-					    <abbr title="Iridium">Ir</abbr>
+					    <abbr title="Irídio">Ir</abbr>
 					</li>
 					<li>
-					    <abbr title="Platinum">Pt</abbr>
+					    <abbr title="Platina">Pt</abbr>
 					</li>
 					<li>
-					    <abbr title="Gold">Au</abbr>
+					    <abbr title="Ouro">Au</abbr>
 					</li>
 					<li>
-					    <abbr title="Mercury">Hg</abbr>
+					    <abbr title="Mercurio">Hg</abbr>
 					</li>
 					<li>
-					    <abbr title="Thallium">Tl</abbr>
+					    <abbr title="Tálio">Tl</abbr>
 					</li>
 					<li>
-					    <abbr title="Lead">Pb</abbr>
+					    <abbr title="Chumbo">Pb</abbr>
 					</li>
 					<li>
-					    <abbr title="Bismuth">Bi</abbr>
+					    <abbr title="Bismuto">Bi</abbr>
 					</li>
 					<li>
-					    <abbr title="Polonium">Po</abbr>
+					    <abbr title="Polônio">Po</abbr>
 					</li>
 					<li class="metalloid">
-					    <abbr title="Astatine">At</abbr>
+					    <abbr title="Ástato">At</abbr>
 					</li>
 					<li class="noble-gas">
-					    <abbr title="Radon">Rn</abbr>
+					    <abbr title="Rádon">Rn</abbr>
 					</li>
 					<li class="alkali">
-					    <abbr title="Francium">Fr</abbr>
+					    <abbr title="Fráncio">Fr</abbr>
 					</li>
 					<li class="alkaline">
-					    <abbr title="Radium">Ra</abbr>
+					    <abbr title="Rádio">Ra</abbr>
 					</li>
 					<li class="actinide">
-					    <abbr title="Actinium">Ac</abbr>
+					    <abbr title="Actínio">Ac</abbr>
 					</li>
 					<li class="actinide" id="thorium" >
-					    <abbr title="Thorium">Th</abbr>
+					    <abbr title="Tório">Th</abbr>
 					</li>
 					<li class="actinide">
-					    <abbr title="Protactinium">Pa</abbr>
+					    <abbr title="Portácinio">Pa</abbr>
 					</li>
 					<li class="actinide">
-					    <abbr title="Uranium">U</abbr>
+					    <abbr title="Urânio">U</abbr>
 					</li>
 					<li class="actinide">
-					    <abbr title="Neptunium">Np</abbr>
+					    <abbr title="Netúnio">Np</abbr>
 					</li>
 					<li class="actinide">
-					    <abbr title="Plutonium">Up</abbr>
+					    <abbr title="Plutônio">Up</abbr>
 					</li>
 					<li class="actinide">
-					    <abbr title="Americium">Am</abbr>
+					    <abbr title="Amerício">Am</abbr>
 					</li>
 					<li class="actinide">
-					    <abbr title="Curium">Cm</abbr>
+					    <abbr title="Cúrio">Cm</abbr>
 					</li>
 					<li class="actinide">
-					    <abbr title="Berkelium">Bk</abbr>
+					    <abbr title="Berquélio">Bk</abbr>
 					</li>
 					<li class="actinide">
-					    <abbr title="Californium">Cf</abbr>
+					    <abbr title="Califôrnio">Cf</abbr>
 					</li>
 					<li class="actinide">
-					    <abbr title="Einsteinium">Es</abbr>
+					    <abbr title="Einstênio">Es</abbr>
 					</li>
 					<li class="actinide">
-					    <abbr title="Fermium">Fm</abbr>
+					    <abbr title="Férmio">Fm</abbr>
 					</li>
 					<li class="actinide">
-					    <abbr title="Mendelevium">Md</abbr>
+					    <abbr title="Mendelévio">Md</abbr>
 					</li>
 					<li class="actinide">
-					    <abbr title="Nobelium">No</abbr>
+					    <abbr title="Nobélio">No</abbr>
 					</li>
 					<li class="actinide">
-					    <abbr title="Lawrencium">Lr</abbr>
+					    <abbr title="Laurêncio">Lr</abbr>
 					</li>
 					<li id="rutherfordium">
-					    <abbr title="Rutherfordium">Rf</abbr>
+					    <abbr title="Rutherfórdio">Rf</abbr>
 					</li>
 					<li>
-					    <abbr title="Dubnium">Db</abbr>
+					    <abbr title="Dúbnio">Db</abbr>
 					</li>
 					<li>
-					    <abbr title="Seaborgium">Sg</abbr>
+					    <abbr title="Seabórgio">Sg</abbr>
 					</li>
 					<li>
-					    <abbr title="Bohrium">Bh</abbr>
+					    <abbr title="Bório">Bh</abbr>
 					</li>
 					<li>
-					    <abbr title="Hassium">Hs</abbr>
+					    <abbr title="Hássio">Hs</abbr>
 					</li>
 					<li class="unknown">
-					    <abbr title="Meitnerium">Mt</abbr>
+					    <abbr title="Meitnério">Mt</abbr>
 					</li>
 					<li class="unknown">
 					    <abbr title="Darmstadtium">Ds</abbr>
 					</li>
 					<li class="unknown">
-					    <abbr title="Roentgenium">Rg</abbr>
+					    <abbr title="Darmstádtio">Rg</abbr>
 					</li>
 					<li>
-					    <abbr title="Copernicium">Cn</abbr>
+					    <abbr title="Copernício">Cn</abbr>
 					</li>
 					<li class="unknown">
 					    <abbr title="Nihonium">Cn</abbr>
 					</li>
 					<li class="unknown">
-					    <abbr title="Flerovium">Fl</abbr>
+					    <abbr title="Fleróvio">Fl</abbr>
 					</li>
 					<li class="unknown">
-					    <abbr title="Moscovium">Mc</abbr>
+					    <abbr title="Moscóvio">Mc</abbr>
 					</li>
 					<li class="unknown">
-					    <abbr title="Livermorium">Lv</abbr>
+					    <abbr title="Livermório">Lv</abbr>
 					</li>
 					<li class="unknown">
-					    <abbr title="Tennessine">Ts</abbr>
+					    <abbr title="Tenesso">Ts</abbr>
 					</li>
 					<li class="unknown">
-					    <abbr title="Oganesson">Og</abbr>
+					    <abbr title="Oganessônio">Og</abbr>
 					</li>
-					</ol>
+				</ol>
 
 	    	</div>
 	  	</main>
@@ -705,9 +718,32 @@
 </body>
 
 <script>
+	// ATIVA O EFEITO DE PARTICULAS NO FUNDO
     particlesJS.load('particles-js', '../js/particlesjs-config.json', function() {
+    	tippy('li');
         $(".particles-js-canvas-el").addClass("animated zoomIn");
     });
+</script>
+
+<script>
+	function pesquisarElementos() {
+	    // VARIÁVEIS
+	    var input, filter, ul, li, a, i;
+	    input = document.getElementById('pesquisarElementos');
+	    filter = input.value.toUpperCase();
+	    ul = document.getElementById("tabela-periodica");
+	    li = ul.getElementsByTagName('li');
+
+	    // PROCURA O ELEMENTO DIGITADO
+	    for (i = 0; i < li.length; i++) {
+	        a = li[i].getElementsByTagName("abbr")[0];
+	        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+	            li[i].style.display = "";
+	        } else {
+	            li[i].style.display = "none";
+	        }
+	    }
+	}
 </script>
 
 </html>	
