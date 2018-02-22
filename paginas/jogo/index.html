@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Na</title>
+
+    <link href="css/old.css" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="meta/apple-touch-icon.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0, maximum-scale=1, user-scalable=no, minimal-ui">
+</head>
+
+<body>
+    <div class="container">
+        <div class="heading">
+            <h1 class="title">Na</h1>
+            <div class="scores-container">
+                <div class="score-container" id="score-container">0</div>
+                <div class="best-container">0</div>
+            </div>
+        </div>
+        <p class="game-intro" id="game-intro">Junte os elementos para formar o <strong>Na!</strong></p>
+        <a href="../../index.html" class="game-intro"><i class="fas fa-sign-out-alt"></i>Voltar ao Quantum</p>
+
+        <div class="game-container">
+            <div class="game-message">
+                <p></p>
+                <div class="lower">
+                    <a class="retry-button">Tente novamente</a>
+                </div>
+            </div>
+
+            <div class="grid-container" id="grid-container">
+                <div class="grid-row">
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                </div>
+                <div class="grid-row">
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                </div>
+                <div class="grid-row">
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                </div>
+                <div class="grid-row">
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                </div>
+            </div>
+
+            <div class="tile-container" id="tile-container">
+
+            </div>
+        </div>
+        
+        <script src="js/animframe_polyfill.js"></script>
+        <script src="js/keyboard_input_manager.js"></script>
+        <script src="js/html_acuator.js"></script>
+        <script src="js/grid.js"></script>
+        <script src="js/tile.js"></script>
+        <script src="js/local_score_manager.js"></script>
+        <script src="js/game_manager.js"></script>
+        <script src="js/skin_chemistry.js"></script>
+    </div>
+</body>
+
+<script>
+    particlesJS.load('particles-js', '../../js/particlesjs-config.json', function() {
+        $(".particles-js-canvas-el").addClass("animated zoomIn");
+    });
+</script>
+
+</html>

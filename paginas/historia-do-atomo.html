@@ -2,21 +2,22 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- AJUSTAR A PÁGINA A DIFERENTES TAMANHOS DE TELA -->
-	<title>Quantum</title>
+	<title>Quantum | História do Atomo</title>
 	<!-- CSS -->
-    <link rel="stylesheet" href="css/material.min.css"> <!-- MATERIAL DESIGN LITE (CSS) -->
-    <link rel="stylesheet" href="css/bootstrap.min.css"> <!-- BOOTSTRAP 4 (CSS) -->
-    <link rel="stylesheet" href="css/dialog-polyfill.css"> <!-- DIALOG POLYFILL (CSS) -->
-    <link rel="stylesheet" href="css/pace-theme-flash.css"> <!-- PACE (CSS) -->
-    <link rel="stylesheet" href="css/animate.css"> <!-- ANIMATE.CSS (APENAS CSS) -->
-    <!-- JS -->
-    <script src="js/jquery-3.3.1.min.js"></script> <!-- JQUERY (APENAS JS) -->
-    <script src="js/bootstrap.min.js"></script> <!-- BOOTSTRAP 4 (JS) -->
-    <script src="js/particles.min.js"></script> <!-- PARTICLES.JS (JS) -->
-    <script src="js/material.min.js"></script> <!-- MATERIAL DESIGN LITE (JS) -->
-    <script src="js/dialog-polyfill.js"></script> <!-- DIALOG POLYFILL (JS) -->
-    <script src="js/fontawesome-all.min.js"></script> <!-- FONT AWESOME (APENAS JS) -->
-    <script src="js/pace.min.js"></script> <!-- PACE.JS (JS) -->
+	<link rel="stylesheet" href="../css/material.min.css"> <!-- MATERIAL DESIGN LITE (CSS) -->
+	<link rel="stylesheet" href="../css/bootstrap.min.css"> <!-- BOOTSTRAP 4 (CSS) -->
+	<link rel="stylesheet" href="../css/dialog-polyfill.css"> <!-- DIALOG POLYFILL (CSS) -->
+	<link rel="stylesheet" href="../css/pace-theme-flash.css"> <!-- PACE (CSS) -->
+    <link rel="stylesheet" href="../css/animate.css"> <!-- ANIMATE.CSS (APENAS CSS) -->
+	<!-- JS -->
+	<script src="../js/jquery-3.3.1.min.js"></script> <!-- JQUERY (APENAS JS) -->
+    <script src="../js/bootstrap.min.js"></script> <!-- BOOTSTRAP 4 (JS) -->
+    <script src="../js/particles.min.js"></script> <!-- PARTICLES.JS (JS) -->
+	<script src="../js/material.min.js"></script> <!-- MATERIAL DESIGN LITE (JS) -->
+	<script src="../js/tippy.min.js"></script> <!-- TIPPY.JS (APENAS JS) -->
+	<script src="../js/dialog-polyfill.js"></script> <!-- DIALOG POLYFILL (JS) -->
+	<script src="../js/fontawesome-all.min.js"></script> <!-- FONT AWESOME (APENAS JS) -->
+    <script src="../js/pace.min.js"></script> <!-- PACE.JS (JS) -->
 
 	<style type="text/css">
 		
@@ -25,11 +26,12 @@
 	font-family: 'Material Icons';
 		font-style: normal;
 	  	font-weight: 400;
+	 	src: url(../fonts/MaterialIcons-Regular.eot); /* IE6-8 */
 	 	src: local('Material Icons'),
 	    	local('MaterialIcons-Regular'),
-	    	url(fonts/MaterialIcons-Regular.woff2) format('woff2'),
-	    	url(fonts/MaterialIcons-Regular.woff) format('woff'),
-	    	url(fonts/MaterialIcons-Regular.ttf) format('truetype');
+	    	url(../fonts/MaterialIcons-Regular.woff2) format('woff2'),
+	    	url(../fonts/MaterialIcons-Regular.woff) format('woff'),
+	    	url(../fonts/MaterialIcons-Regular.ttf) format('truetype');
 	}
 
 	/* ROBOTO (FONTE) */
@@ -37,10 +39,28 @@
 		font-family: 'Roboto';
 		font-style: normal;
 		font-weight: 400;
-		src: url(fonts/Roboto-Regular.ttf);
+		src: url(../fonts/Roboto-Regular.ttf);
 	}
 
-    /* JUMBOTRON DO BOOTSTRAP */
+	/* COR DE FUNDO DA PÁGINA */
+	body {
+		background-color: #e9ecef;
+	}
+
+	/* MARGEM NO CONTEUDO DAS ABAS */
+	.page-content {
+		margin: 16px;
+		color: white;
+	}
+
+	/* LOGOTIPO DA JANELA SOBRE */
+	.logo {
+		width: 64px;
+		height: 64px;
+		margin: 0 16px 0 0;
+	}
+
+	/* JUMBOTRON DO BOOTSTRAP */
     .jumbotron {
         width: 100vw;
         background: transparent;
@@ -86,7 +106,7 @@
 </head>
 <body>
 
-    <!-- EFEITO DE PARTICULAS -->
+	<!-- EFEITO DE PARTICULAS -->
     <div id="particles-js"></div>
 
 	<!-- ########## MENU ########## -->
@@ -120,9 +140,9 @@
 	  	<div class="mdl-layout__drawer">
 	    	<span class="mdl-layout-title">Quantum</span>
 	    	<nav class="mdl-navigation">
-	      		<a class="mdl-navigation__link" href="paginas/tabela.html">Tabela Periódica</a>
-	      		<a class="mdl-navigation__link" href="paginas/historia-do-atomo.html">Conteúdo</a>
-	      		<a class="mdl-navigation__link" href="paginas/jogo/index.html.html">Jogo químico</a>
+	      		<a class="mdl-navigation__link" href="tabela.html">Tabela Periódica</a>
+	      		<a class="mdl-navigation__link" href="historia-do-atomo.html">Conteúdo</a>
+	      		<a class="mdl-navigation__link" href="jogo/index.html">Jogo químico</a>
 	    	</nav>
 	  	</div>
 
@@ -168,54 +188,25 @@
 	  		<!-- ########## CONTEÚDO DA PÁGINA ########## -->
 	    	<div class="page-content">
 
-	    		<!-- ##### PÁGINA INICIAL ##### -->
-	    		<div class="jumbotron">
-				  	<img class="quantum-logo" src="img/quantum-logo.svg">
-				  	<hr class="my-4">
-				  	<p class="lead">
-
-				  		<!-- ########## BOTÕES ########## -->
-				  		<center>
-    				  		<div class="container">
-    						  	<div class="row">
-    						  		<!-- ##### TABELA PERIÓDICA ##### -->
-    						    	<div class="col-sm">
-    						      		<button style="outline: none;" onclick="location.href='paginas/tabela.html';" type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored btnFormula">
-    						      			<i class="fas fa-table"></i> Tabela Periódica
-    									</button>
-    						    	</div>
-
-    						    	<!-- ##### CONTEÚDO ##### -->
-    						    	<div class="col-sm">
-    						      		<button style="outline: none;" onclick="location.href='paginas/historia-do-atomo.html';" type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored btnFormula">
-    						      			<i class="fas fa-superscript"></i> Formulas químicas
-    									</button>
-    						    	</div>
-
-    						    	<!-- ##### JOGO QUÍMICO ##### -->
-    						    	<div class="col-sm">
-    						      		<button style="outline: none;" onclick="location.href='paginas/jogo/index.html';" type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored btnFormula">
-    						      			<i class="fas fa-gamepad"></i> Jogo Químico
-    									</button>
-    						    	</div>
-
-    						  	</div>
-    						</div>
-						</center>
-
-				  	</p>
-				</div>
+	    		<h1>HISTÓRIA DO ÁTOMO</h1>
+	    		<h5>Para saber como nomeá-los, é importante também saber sua história. A idealização do átomo foi feita pela primeira vez por dois filósofos gregos chamados Leucipo e Demócrito (séc. IV e V a.C.). Acreditavam que o Universo era constituído por partículas indivisíveis (“a”=não; “tomo”=divisível) que eram eternas e imutáveis, em movimento no vazio.
+	Em contrapartida, Aristóteles (384-322 a.C.) afirmava que a matéria era contínua, não formada por átomos. Esse pensamento de Aristóteles prevaleceu por mais de 2 mil anos. Hoje se sabe que essa concepção é errada.
+	Já no inicio do século XIX, o químico inglês John Dalton, com o conceito de átomo já conhecido e aceito, elaborou um modelo próprio de como seria o átomo. Uma esfera maciça, indivisível e indestrutível. Entre os átomos havia apenas o vazio.<br/><br/>
+		George Stoney, em 1891, propôs o nome de elétron para a unidade natural de eletricidade, naquele tempo ainda desconhecida, mas já demonstrada por dados experimentais. Já era sabido que quando ocorre passagem de eletricidade a um gás rarefeito preso em um tubo, uma incandescência cuja cor depende apenas da quantidade de corrente que passa através do tubo é emitida. Além disso, que a irradiação do eletrodo negativo produzia a luminosidade quando colidia com a outra extremidade do tubo de vidro.
+		O físico inglês Joseph John Thomson, após os elétrons (carga negativa) terem sido descobertos, propôs a existência de carga positiva no átomo. Elaborou então um modelo de átomo constituído por uma esfera maciça de carga positiva  que continha pequenas esferas em sua superfície de carga negativa (elétrons). Modelo esse que ficou conhecido como pudim de passas.
+		Segundo Thomson, o número de elétrons o átomo deveria ser suficiente para anular a carga positiva da esfera. Diferente de Dalton que acreditava na total indivisibilidade do átomo, Thomson acreditava que átomos poderiam perder ou ganhar elétrons, tornando-se respectivamente em átomos eletropositivos (cátions atualmente) ou eletronegativos (ânions atualmente).
+	</h5>
 
 	    	</div>
 	  	</main>
 	</div>
 
 <script>
-    particlesJS.load('particles-js', 'js/particlesjs-config.json', function() {
+    particlesJS.load('particles-js', '../js/particlesjs-config.json', function() {
         $(".particles-js-canvas-el").addClass("animated zoomIn");
     });
 </script>
 
 </body>
 
-</html>
+</html>	
