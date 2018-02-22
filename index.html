@@ -10,8 +10,8 @@
 	<link rel="stylesheet" href="css/pace-theme-flash.css"> <!-- PACE (CSS) -->
     <link rel="stylesheet" href="css/animate.css"> <!-- ANIMATE.CSS -->
 	<!-- JS -->
-	<script src="js/jquery-3.2.1.min.js"></script> <!-- JQUERY -->
-    <script src="js/bootstrap.min.js"></script> <!-- BOOTSTRAP (JS) -->
+	<script src="js/jquery-3.3.1.min.js"></script> <!-- JQUERY -->
+    <script src="js/bootstrap.min.js"></script> <!-- BOOTSTRAP 4 (JS) -->
     <script src="js/particles.min.js"></script> <!-- PARTICLES.JS (JS) -->
 	<script src="js/material.min.js"></script> <!-- MATERIAL DESIGN LITE (JS) -->
 	<script src="js/dialog-polyfill.js"></script> <!-- DIALOG POLYFILL (JS) -->
@@ -40,6 +40,7 @@
 		src: url(fonts/Roboto-Regular.ttf);
 	}
 
+    /* JUMBOTRON DO BOOTSTRAP */
     .jumbotron {
         width: 100vw;
         background: transparent;
@@ -63,10 +64,12 @@
 		margin: 0 16px 0 0;
 	}
 
-    .appBar {
+    /* EFEITO DE SOMBRA NA BARRA SUPERIOR */
+    .mdl-layout__header--transparent {
         background: linear-gradient(to bottom, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%);
     }
 
+    /* EFEITO DE PARTÍCULAS */
     #particles-js {
         position: fixed;
         width: 100%;
@@ -88,7 +91,7 @@
 
 	<!-- ########## MENU ########## -->
 	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-	  	<header class="mdl-layout__header mdl-layout__header--transparent appBar">
+	  	<header class="mdl-layout__header mdl-layout__header--transparent">
 	    	<div class="mdl-layout__header-row">
 	      		<!-- TITULO -->
 	      		<span class="mdl-layout-title">Quantum</span>
@@ -104,7 +107,7 @@
 
 						<!-- OPÇÕES DO MENU -->
 						<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-right">
-						  	<li><a href="index.html" class="mdl-menu__item">Página Inicial</a></li>
+						  	<li><a href="/" class="mdl-menu__item">Página Inicial</a></li>
 						  	<li><a target="_blank" href="https://github.com/henriquehbr/quantum" class="mdl-menu__item">Repositório no Github</a></li>
 						  <li><a id="show-dialog" class="mdl-menu__item">Sobre o Quantum</a></li>
 						</ul>
@@ -177,21 +180,21 @@
     						  	<div class="row">
     						  		<!-- ##### TABELA PERIÓDICA ##### -->
     						    	<div class="col-sm">
-    						      		<button onclick="location.href='formulas/peso.html';" type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored btnFormula">
+    						      		<button style="outline: none;" onclick="location.href='formulas/peso.html';" type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored btnFormula">
     						      			<i class="fas fa-table"></i> Tabela Periódica
     									</button>
     						    	</div>
 
     						    	<!-- ##### CONTEÚDO ##### -->
     						    	<div class="col-sm">
-    						      		<button onclick="location.href='formulas/atrito.html';" type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored btnFormula">
-    						      			<i class="fab fa-leanpub"></i> Conteúdo
+    						      		<button style="outline: none;" onclick="location.href='formulas/atrito.html';" type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored btnFormula">
+    						      			<i class="fas fa-superscript"></i> Formulas químicas
     									</button>
     						    	</div>
 
     						    	<!-- ##### JOGO QUÍMICO ##### -->
     						    	<div class="col-sm">
-    						      		<button onclick="location.href='formulas/elastica.html';" type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored btnFormula">
+    						      		<button style="outline: none;" onclick="location.href='formulas/elastica.html';" type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored btnFormula">
     						      			<i class="fas fa-gamepad"></i> Jogo Químico
     									</button>
     						    	</div>

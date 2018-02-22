@@ -1,20 +1,22 @@
 <!DOCTYPE html>
-<html manifest="../ifisica.appcache">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- AJUSTAR A PÁGINA A DIFERENTES TAMANHOS DE TELA -->
-	<title>iFísica | Força Peso</title>
+	<title>Quantum | Tabela Periódica</title>
 	<!-- CSS -->
-	<link rel="stylesheet" href="../css/material.min.css"> <!-- CSS DO MATERIAL UI -->
-	<link rel="stylesheet" href="../css/bootstrap.min.css"> <!-- CSS DO BOOTSTRAP -->
-	<link rel="stylesheet" href="../css/dialog-polyfill.css"> <!-- CSS DO DIALOG POLYFILL -->
-	<link rel="stylesheet" href="../css/pace-theme-flash.css"> <!-- CSS DO PACE -->
+	<link rel="stylesheet" href="../css/material.min.css"> <!-- MATERIAL DESIGN LITE (CSS) -->
+	<link rel="stylesheet" href="../css/bootstrap.min.css"> <!-- BOOTSTRAP 4 (CSS) -->
+	<link rel="stylesheet" href="../css/dialog-polyfill.css"> <!-- DIALOG POLYFILL (CSS) -->
+	<link rel="stylesheet" href="../css/pace-theme-flash.css"> <!-- PACE (CSS) -->
+    <link rel="stylesheet" href="../css/animate.css"> <!-- ANIMATE.CSS -->
 	<!-- JS -->
-	<script src="../js/jquery-3.2.1.min.js"></script> <!-- JS DO JQUERY -->
-	<script src="../js/material.min.js"></script> <!-- JS DO MATERIAL UI -->
-	<script src="../js/bootstrap.min.js"></script> <!-- JS DO BOOTSTRAP -->
-	<script src="../js/dialog-polyfill.js"></script> <!-- JS DO DIALOG POLYFILL -->
-	<script src="../js/pace.min.js"></script> <!-- JS DO PACE -->
+	<script src="../js/jquery-3.3.1.min.js"></script> <!-- JQUERY -->
+    <script src="../js/bootstrap.min.js"></script> <!-- BOOTSTRAP 4 (JS) -->
+    <script src="../js/particles.min.js"></script> <!-- PARTICLES.JS (JS) -->
+	<script src="../js/material.min.js"></script> <!-- MATERIAL DESIGN LITE (JS) -->
+	<script src="../js/dialog-polyfill.js"></script> <!-- DIALOG POLYFILL (JS) -->
+	<script src="../js/fontawesome-all.min.js"></script> <!-- FONT AWESOME (JS) -->
+    <script src="../js/pace.min.js"></script> <!-- PACE.JS (JS) -->
 
 	<style type="text/css">
 		
@@ -23,7 +25,6 @@
 	font-family: 'Material Icons';
 		font-style: normal;
 	  	font-weight: 400;
-	 	src: url(../fonts/MaterialIcons-Regular.eot); /* IE6-8 */
 	 	src: local('Material Icons'),
 	    	local('MaterialIcons-Regular'),
 	    	url(../fonts/MaterialIcons-Regular.woff2) format('woff2'),
@@ -36,18 +37,25 @@
 		font-family: 'Roboto';
 		font-style: normal;
 		font-weight: 400;
-		src: url(../fonts/Roboto-Regular.ttf);
+		src: url(fonts/Roboto-Regular.ttf);
 	}
 
-	/* COR DE FUNDO DA PÁGINA */
-	body {
-		background-color: #e9ecef;
+    /* JUMBOTRON DO BOOTSTRAP */
+    .jumbotron {
+        width: 100vw;
+        background: transparent;
+        text-align: center;
+    }
+
+	.btnFormula {
+		margin: 10px 5px;
 	}
 
-	/* MARGEM NO CONTEUDO DAS ABAS */
-	.page-content {
-		margin: 16px;
-	}
+    .quantum-logo {
+        max-width: 100%;
+        height: auto;
+        width: auto;
+    }
 
 	/* LOGOTIPO DA JANELA SOBRE */
 	.logo {
@@ -56,44 +64,193 @@
 		margin: 0 16px 0 0;
 	}
 
-	/* AJUSTA O TAMANHO/MARGEM DAS CAIXAS DE TEXTO DA CALCULADORA */
-	.form-control {
-		min-width: 50%;
-		margin-bottom: 5px;
+    /* EFEITO DE SOMBRA NA BARRA SUPERIOR */
+    .mdl-layout__header--transparent {
+        background: linear-gradient(to bottom, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%);
+    }
+
+    /* EFEITO DE PARTÍCULAS */
+    #particles-js {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background-color: dodgerblue;
+        background-image: url('');
+        background-size: cover;
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+    }
+
+	/* TABELA PERIÓDICA */
+
+	body {
+		counter-reset: element;
 	}
 
-	/* AJUSTA AS MARGENS DOS ALERTAS (BOOTSTRAP) */
-	.alert {
-		margin: 16px 0 0 0;
+	@font-face {
+		font-family: Phenomena;
+		src: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/Phenomena-Regular.otf);
+		font-weight: normal;
 	}
 
-	/* TEXTO "ATIVAR" NO ALERTA (BOOTSTRAP) */
-	.alert-link:hover {
-		text-decoration: underline;
+	@font-face {
+		font-family: Phenomena;
+		src: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/Phenomena-Bold.otf);
+		font-weight: bold;
 	}
 
-	/* VIDEOAULA */
-	#video {
-		width: 100%;
-		height: calc(80vh - 144px);
-		background-color: black;
-		margin-bottom: 10px;
+	.periodic-table {
+		font-family: Phenomena, script;
+		display: grid;
+		width: 100vw;
+		grid-column-gap: .5vw;
+		grid-row-gap: .5vw;
+		padding-left: 0;
 	}
 
-	/* EFEITO DE FADE */
-	html {
-		-webkit-animation: fadeEffect 1s;
-		animation: fadeEffect 1s; /* Fading effect takes 1 second */
+	.periodic-table>li {
+		display: flex;
+		position: relative;
+		justify-content: center;
+		align-items: center;
+		height: 4.5vw;
+		border-radius: 3px;
+		background: rgb(91, 194, 234);
+		font-weight: bold;
 	}
 
-	@-webkit-keyframes fadeEffect {
-	    from {opacity: 0;}
-	    to {opacity: 1;}
+	.periodic-table>li:before {
+		counter-increment: element;
+		content: counter(element);
+		position: absolute;
+		bottom: 5px;
+		left: 6px;
+		font-size: .9vw;
+		font-weight: lighter;
 	}
 
-	@keyframes fadeEffect {
-	    from {opacity: 0;}
-	    to {opacity: 1;}
+	.periodic-table>li abbr {
+		font-size: 2.5vw;
+	}
+
+	#helium {
+		grid-column-start: 18;
+	}
+
+	#boron,
+	#aluminium {
+		grid-column-start: 13;
+	}
+
+	#cerium,
+	#thorium {
+		grid-column-start: 4;
+	}
+
+	.periodic-table>li:nth-child(n+58):nth-last-child(n+48) {
+		grid-row-start: 8;
+	}
+
+	.periodic-table>li:nth-child(n+90):nth-last-child(n+16) {
+		grid-row-start: 9;
+	}
+
+	.periodic-table:before {
+		display: block;
+		content: '';
+		grid-row: 8 / 10;
+		grid-column: 1 / 4;
+	}
+
+	.periodic-table .noble-gas {
+		background: rgb(234, 218, 36);
+	}
+
+	.periodic-table .diatomic-nonmetal {
+		background: rgb(234, 179, 127);
+	}
+
+	.periodic-table .alkali {
+		background: hsl(326, 52%, 84%);
+	}
+
+	.periodic-table .hydrogen {
+		background: rgb(163, 199, 210);
+	}
+
+	.periodic-table .alkaline {
+		background: hsl(120, 52%, 84%);
+	}
+
+	.periodic-table .unknown {
+		background: hsl(210, 2%, 73%);
+	}
+
+	.periodic-table .lanthanide {
+		background: hsl(183, 54%, 84%);
+	}
+
+	.periodic-table .actinide {
+		background: hsl(82, 60%, 56%);
+	}
+
+	.periodic-table .metalloid {
+		background: hsl(142, 60%, 56%);
+	}
+
+	.periodic-table .polyatomic-non-metal {
+		background: hsl(358, 60%, 56%);
+	}
+
+	@media all and (max-width: 1100px) {
+		#helium,
+		#boron,
+		#aluminium,
+		#cerium,
+		#thorium {
+			grid-column-start: auto;
+		}
+		.periodic-table {
+			grid-template-columns: 1fr 1fr 1fr;
+		}
+		.periodic-table>li abbr {
+			font-size: 0;
+		}
+		.periodic-table>li {
+			padding: 1rem;
+		}
+		.periodic-table>li abbr:after {
+			content: attr(title);
+			font-size: 2rem;
+		}
+		.periodic-table>li:before {
+			font-size: 1rem;
+		}
+		.periodic-table>li:nth-child(n+58):nth-last-child(n+48) {
+			grid-row-start: auto !important;
+		}
+		.periodic-table>li:nth-child(n+90):nth-last-child(n+16) {
+			grid-row-start: auto !important;
+		}
+		.periodic-table:before {
+			display: none !important;
+		}
+	}
+
+	@media all and (max-width: 750px) {
+		.periodic-table {
+			grid-template-columns: 1fr 1fr;
+		}
+		.periodic-table>li {
+			height: auto;
+			font-size: 3vw;
+		}
+	}
+
+	@media all and (max-width: 550px) {
+		.periodic-table {
+			grid-template-columns: 1fr;
+		}
 	}
 
 	</style>
@@ -101,12 +258,15 @@
 </head>
 <body>
 
-	<!-- ########## MENU COM ABAS FIXAS ########## -->
-	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
-	  	<header class="mdl-layout__header">
+	<!-- particles.js container -->
+    <div id="particles-js"></div>
+
+	<!-- ########## MENU ########## -->
+	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+	  	<header class="mdl-layout__header mdl-layout__header--transparent">
 	    	<div class="mdl-layout__header-row">
 	      		<!-- TITULO -->
-	      		<span class="mdl-layout-title">Força Peso</span>
+	      		<span class="mdl-layout-title">Quantum</span>
 	      		<!-- ADICIONA UM ESPAÇAMENTO, PARA ALINHAR A NAVEGAÇÃO A DIREITA -->
 	      		<div class="mdl-layout-spacer"></div>
 	      			<!-- BARRA DE NAVEGAÇÃO HORIZONTAL -->
@@ -119,45 +279,48 @@
 
 						<!-- OPÇÕES DO MENU -->
 						<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-right">
-						  	<li><a href="../index.html" class="mdl-menu__item">Página Inicial</a></li>
-						  	<li><a target="_blank" href="https://github.com/nsioficial/ifisica" class="mdl-menu__item">Repositório no Github</a></li>
-						  <li><a id="show-dialog" class="mdl-menu__item">Sobre o iFísica</a></li>
+						  	<li><a href="/" class="mdl-menu__item">Página Inicial</a></li>
+						  	<li><a target="_blank" href="https://github.com/henriquehbr/quantum" class="mdl-menu__item">Repositório no Github</a></li>
+						  <li><a id="show-dialog" class="mdl-menu__item">Sobre o Quantum</a></li>
 						</ul>
 
-					<!-- FIM DA BARRA DE NAVEGAÇÃO HORIZONTAL -->
 	      			</nav>
-	   		 </div>
+	    		</div>
+	  	</header>
 
-			<!-- ########## SOBRE O IFISICA ########## -->
-			<dialog class="mdl-dialog">
-				<h4 class="mdl-dialog__title"><img class="logo" src="../img/logo-ifisica.png">iFísica</h4>
-				<div id="alertaCache" class="alert alert-success" role="alert">
-				  	...
-				</div>
-			   	<div class="mdl-dialog__content">
-			   		<p>
-			      		Um app desenvolvido na feira de ciencias de 2017 do IFTO Campus Palmas, para consultar formulas de física diretamente do seu smartphone, incluindo vídeo-aulas, métodos de resolução e uma calculadora interativa para solução de exercicíos mais complexos.
-			     	</p>
-			      	<hr>
-			      	<small>Projeto desenvolvido por:<br>
-			     		- <a target="_blank" href="https://henriquehbr.github.io">Henrique Borges</a> (Programação)<br>
-				 		- <a target="_blank" href="https://github.com/angeloecw">Angelo Emanuel</a> (Programação)<br>
-			 	    	- <a target="_blank" href="https://github.com/GiordanoBrandao-NSI">Giordano Bruno</a> (Programação)<br>
-			 	    	- <a target="_blank" href="#">Alexander Justus</a> (Produção das vídeo-aulas)<br>
-			 	    	- <a target="_blank" href="#">Luiz Felipe</a> (Produção das vídeo-aulas)<br></small>
-				</div>
-				<div class="mdl-dialog__actions">
-					<!-- BOTÃO OK -->
-			   		<button type="button" class="mdl-button close">OK</button>
-				</div>
-			</dialog>
+	  	<!-- ########## MENU LATERAL ########## -->
+	  	<div class="mdl-layout__drawer">
+	    	<span class="mdl-layout-title">Quantum</span>
+	    	<nav class="mdl-navigation">
+	      		<a class="mdl-navigation__link" href="formulas/peso.html">Tabela Periódica</a>
+	      		<a class="mdl-navigation__link" href="formulas/atrito.html">Conteúdo</a>
+	      		<a class="mdl-navigation__link" href="formulas/elastica.html">Jogo químico</a>
+	    	</nav>
+	  	</div>
 
-<!-- ########## SOBRE O IFISICA (SCRIPT) ########## -->
+	  	<!-- ########## SOBRE O QUANTUM ########## -->
+		<dialog class="mdl-dialog animated fadeInDown">
+			<h4 class="mdl-dialog__title"><img class="logo" src="../img/quantum-icon.svg">Quantum</h4>
+		   	<div class="mdl-dialog__content">
+		   		<p>
+		      		Plataforma de ensino desenvolvida por alunos do IFTO Campus Palmas, para consultar elementos de uma tabela periódica atualizada e interativa, com diversos métodos de solução para exercicíos comuns na química, incluindo um jogo relacionado ao conteúdo.
+		     	</p>
+		      	<hr>
+		      	<small>Projeto desenvolvido por:<br>
+		     		- <a target="_blank" href="https://henriquehbr.github.io">Henrique Borges</a> (Programação)<br>
+			 		- <a target="_blank" href="https://github.com/angeloecw">Angelo Emanuel</a> (Desenvolvimento da parte escrita)<br>
+		 	    	- <a target="_blank" href="https://github.com/GiordanoBrandao-NSI">Giordano Bruno</a> (Desenvolvimento da parte escrita)<br>
+			</div>
+			<div class="mdl-dialog__actions">
+				<!-- BOTÃO OK -->
+		   		<button type="button" class="mdl-button close">OK</button>
+			</div>
+		</dialog>
+
+		<!-- ########## SOBRE O QUANTUM (SCRIPT) ########## -->
 		<script>
 	    	var dialog = document.querySelector('dialog');
 	    	var btnMostrarDialog = document.querySelector('#show-dialog');
-	    	var alertaCache = document.getElementById('alertaCache');
-	    	var appCache = window.applicationCache;
 	    	if (! dialog.showModal) {
 	      		// ##### REGISTRA OS DIALOGS DA PÁGINA USANDO POLYFILL #####
 	      		dialogPolyfill.registerDialog(dialog);
@@ -165,43 +328,6 @@
 	    	// QUANDO O BOTÃO FOR CLICADO, A JANELA É ABERTA
 	    	btnMostrarDialog.addEventListener('click', function() {
 	      		dialog.showModal();
-	      		// ########## ANALISA O ESTADO DO CACHE DO SITE ##########
-	      		switch (appCache.status) {
-	      			// UNCACHED (SEM CACHE) == 0
-					case appCache.UNCACHED:
-					  	alertaCache.setAttribute('class', 'alert alert-danger');
-					    alertaCache.innerHTML = "Visualização offline desativada. " + "<a href='javascript:appCache.update();' class='alert-link'>Ativar</a>";
-					    break;
-					// IDLE (PARADO) == 1
-					case appCache.IDLE:
-					    alertaCache.setAttribute('class', 'alert alert-success');
-					    alertaCache.innerHTML = "Visualização offline funcionando! " + "<a href='javascript:appCache.update();' class='alert-link'>Recarregar</a>";
-					    break;
-					// CHECKING (CHECANDO) == 2
-					case appCache.CHECKING:
-					    alertaCache.setAttribute('class', 'alert alert-info');
-					    alertaCache.innerHTML = "Buscando atualizações...";
-					    break;
-					// DOWNLOADING (BAIXANDO) == 3
-					case appCache.DOWNLOADING:
-					    alertaCache.setAttribute('class', 'alert alert-primary');
-					    alertaCache.innerHTML = "Ativando visualização offline...";
-					    break;
-					// UPDATEREADY (ATUALIZAÇÃO DISPONIVEL) == 4
-					case appCache.UPDATEREADY:
-					    alertaCache.setAttribute('class', 'alert alert-warning');
-					    alertaCache.innerHTML = "Atualização da visualização offline disponível! " + "<a href='javascript:appCache.swapCache();' class='alert-link'>Atualizar</a>";
-					    break;
-					// OBSOLETE (OBSOLETO) == 5
-					case appCache.OBSOLETE:
-					    alertaCache.setAttribute('class', 'alert alert-dark');
-					    alertaCache.innerHTML = "Visualização offline obsoleta. " + "<a href='javascript:appCache.update();' class='alert-link'>Atualizar</a>";
-					    break;
-					default:
-					    alertaCache.setAttribute('class', 'alert alert-dark');
-					    alertaCache.innerHTML = "Erro desconhecido! " + "<a href='javascript:appCache.update();' class='alert-link'>Recarregar</a>";
-					    break;
-				};
 	    	});
 
 	    	// BOTÃO PARA FECHAR A JANELA
@@ -210,94 +336,378 @@
 	    	});
 		</script>
 
-	    	<!-- ########## ABAS ########## -->
-	    	<div class="mdl-layout__tab-bar mdl-js-ripple-effect">
-		    	<a href="#fixed-tab-1" class="mdl-layout__tab is-active">Calcular</a>
-		    	<a href="#fixed-tab-2" class="mdl-layout__tab">Vídeo aula</a>
-		    	<a href="#fixed-tab-3" class="mdl-layout__tab">Informações</a>
-	    	</div>
-	  	</header>
-
-	  	<!-- ########## MENU LATERAL ########## -->
-	  	<div class="mdl-layout__drawer">
-	    	<span class="mdl-layout-title">iFísica</span>
-	    	<nav class="mdl-navigation">
-	      		<a class="mdl-navigation__link" href="peso.html">Força Peso</a>
-	      		<a class="mdl-navigation__link" href="atrito.html">Força de atrito</a>
-	      		<a class="mdl-navigation__link" href="elastica.html">Força elástica</a>
-	      		<a class="mdl-navigation__link" href="centripeta.html">Força centripeta</a>
-	      		<a class="mdl-navigation__link" href="forca.html">Trabalho de uma força</a>
-	    	</nav>
-	 	</div>
-
-	 	<!-- CONTEUDO DAS ABAS -->
 	  	<main class="mdl-layout__content">
-	    	<section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
-	      		<div class="page-content">
-	      			<!-- CONTEUDO DA ABA CALCULAR -->
-	      			<h1>Calcular Força Peso<br>
-	      			<small id="resposta">Resultado:</small></h1>
-					<input onkeyup="forcaPeso()" id="valormassa" class="form-control" type="number" placeholder="Massa">
-					<input onkeyup="forcaPeso()" id="valoraceleracao" class="form-control" type="number" placeholder="Aceleração"><br>
-	      			<!-- FIM DO CONTEUDO DA ABA CALCULAR -->
-	      		</div>
-	    	</section>
-	    	<section class="mdl-layout__tab-panel" id="fixed-tab-2">
-	      		<div class="page-content">
-	      			<!-- CONTEUDO DA VÍDEO AULA -->
-	      			<div id="video">
-	      				<!-- ##### VIDEO ##### -->
-	      			</div>
-	      			<h2>Vídeo-aula de Força Peso</h2>
-	      			<h5>A vídeo-aula a seguir apresenta todas as formulas e os conceitos da força peso.</h5>
-	      			<!-- FIM DO CONTEUDO DA VÍDEO AULA -->
-	      		</div>
-	    	</section>
-	    	<section class="mdl-layout__tab-panel" id="fixed-tab-3">
-	      		<div class="page-content">
-	      			<!-- CONTEUDO DA ABA INFORMAÇÕES -->
-	      			<h1>Força Peso</h1>
-	      			<hr>
-	      			<h4>
-	      				Quando falamos em movimento vertical, introduzimos um conceito de aceleração da gravidade, que sempre atua no sentido a aproximar os corpos em relação à superficie.<br><br>
-						Relacionando com a 2ª Lei de Newton, se um corpo de massa m, sofre a aceleração da gravidade, quando aplicada a ele o principio fundamental da dinâmica poderemos dizer que:<br><br>
-						<center><i>F̅ = mg̅<br>
-							<small>Força = massa * aceleração</small></i></center><br>
-						A esta força, chamamos Força Peso, e podemos expressá-la como:<br><br>
-						<center><i>P̅ = mg̅<br>
-								<small>Peso = massa * aceleração</small></i></center><br>
-						O Peso de um corpo é a força com que a Terra o atrai, podendo ser váriável, quando a gravidade variar, ou seja, quando não estamos nas proximidades da Terra. A massa de um corpo, por sua vez, é constante, ou seja, não varia.<br><br>
-						Existe uma unidade muito utilizada pela indústria, principalmente quando tratamos de força peso, que é o kilograma-força, que por definição é:<br><br>
-						<i>1kgf é o peso de um corpo de massa 1kg submetido a aceleração da gravidade de 9,8m/s².</i><br><br>
-						A sua relação com o newton é:<br><br>
-						<center><i>P = mg<br>1kgf = 1kg * 9,8m/s²<br>1kgf = 9,8kg * m/s² = 9,8N</i></center>
-					</h4><br><br>
+	  		<!-- ########## CONTEÚDO DA PÁGINA ########## -->
+	    	<div class="page-content">
 
-					<div class="alert alert-info" role="alert">
-						<h3>Saiba Mais:</h3>
-					  	<h5>
-					  		Quando falamos no peso de algum corpo, normalmente, lembramos do "peso" medido na balança.
-							Mas este é um termo fisicamente errado, pois o que estamos medindo na realidade, é a nossa massa.
-						</h5>	
-					</div>
-					<!-- FIM DO CONTEÚDO DA ABA INFORMAÇÕES -->
-	      		</div>
-	    	</section>
+	    		<ol class="periodic-table">
+					<li class="hydrogen">
+					    <abbr title="Hydrogen">H</abbr>
+					</li>
+					<li id="helium" class="noble-gas">
+					    <abbr title="Helium">He</abbr>
+					    <span>2</span>
+					</li>
+					<li class="alkali">
+					    <abbr title="Lithium">Li</abbr>
+					</li>
+					<li class="alkaline">
+					    <abbr title="Beryllium">Be</abbr>
+					</li>
+					<li id="boron" class="metalloid">
+					    <abbr title="Boron">B</abbr>
+					</li>
+					<li class="polyatomic-non-metal">
+					    <abbr title="Carbon">C</abbr>
+					</li>
+					<li class="diatomic-nonmetal">
+					    <abbr title="Nitrogen">N</abbr>
+					</li>
+					<li class="diatomic-nonmetal">
+					    <abbr title="Oxygen">O</abbr>
+					</li>
+					<li class="diatomic-nonmetal">
+					    <abbr title="Fluorine">F</abbr>
+					</li>
+					<li class="noble-gas">
+					    <abbr title="Neon">Ne</abbr>
+					</li>
+					<li class="alkali">
+					    <abbr title="Sodium">Na</abbr>
+					</li>
+					<li class="alkaline">
+					    <abbr title="Magnesium">Mg</abbr>
+					</li>
+					<li id="aluminium">
+					    <abbr title="Aluminium">Al</abbr>
+					</li>
+					<li class="metalloid">
+					    <abbr title="Silicon">Si</abbr>
+					</li>
+					<li class="polyatomic-non-metal">
+					    <abbr title="Phosphorus">P</abbr>
+					</li>
+					<li class="polyatomic-non-metal">
+					    <abbr title="Sulphur">S</abbr>
+					</li>
+					<li class="diatomic-nonmetal">
+					    <abbr title="Chlorine">Cl</abbr>
+					</li>
+					<li class="noble-gas">
+					    <abbr title="Argon">Ar</abbr>
+					</li>
+					<li class="alkali">
+					    <abbr title="Potassium">K</abbr>
+					</li>
+					<li class="alkaline">
+					    <abbr title="Calcium">Ca</abbr>
+					</li>
+					<li>
+					    <abbr title="Scandium">Sc</abbr>
+					</li>
+					<li>
+					    <abbr title="Titanium">Ti</abbr>
+					</li>
+					<li>
+					    <abbr title="Vanadium">Ti</abbr>
+					</li>
+					<li>
+					    <abbr title="Chromium">Cr</abbr>
+					</li>
+					<li>
+					    <abbr title="Manganese">Mn</abbr>
+					</li>
+					<li>
+					    <abbr title="Iron">Fe</abbr>
+					</li>
+					<li>
+					    <abbr title="Cobalt">Co</abbr>
+					</li>
+					<li>
+					    <abbr title="Nickel">Ni</abbr>
+					</li>
+					<li>
+					    <abbr title="Copper">Cu</abbr>
+					</li>
+					<li>
+					    <abbr title="Zinc">Zn</abbr>
+					</li>
+					<li>
+					    <abbr title="Gallium">Ga</abbr>
+					</li>
+					<li class="metalloid">
+					    <abbr title="Germanium">Ge</abbr>
+					</li>
+					<li class="metalloid">
+					    <abbr title="Arsenic">As</abbr>
+					</li>
+					<li class="polyatomic-non-metal">
+					    <abbr title="Selenium">Se</abbr>
+					</li>
+					<li class="diatomic-nonmetal">
+					    <abbr title="Bromide">Br</abbr>
+					</li>
+					<li class="noble-gas">
+					    <abbr title="Krypton">Kr</abbr>
+					</li>
+					<li class="alkali">
+					    <abbr title="Rubidium">Rb</abbr>
+					</li>
+					<li class="alkaline">
+					    <abbr title="Strontium">Sr</abbr>
+					</li>
+					<li>
+					    <abbr title="Yttrium">Y</abbr>
+					</li>
+					<li>
+					    <abbr title="Zirconium">Zr</abbr>
+					</li>
+					<li>
+					    <abbr title="Niobium">Nb</abbr>
+					</li>
+					<li>
+					    <abbr title="Molybdenum">Mo</abbr>
+					</li>
+					<li>
+					    <abbr title="Technetium">Tc</abbr>
+					</li>
+					<li>
+					    <abbr title="Ruthenium">Ru</abbr>
+					</li>
+					<li>
+					    <abbr title="Rhodium">Ro</abbr>
+					</li>
+					<li>
+					    <abbr title="Palladium">Pd</abbr>
+					</li>
+					<li>
+					    <abbr title="Silver">Ag</abbr>
+					</li>
+					<li>
+					    <abbr title="Cadmium">Cd</abbr>
+					</li>
+					<li>
+					    <abbr title="Indium">In</abbr>
+					</li>
+					<li>
+					    <abbr title="Tin">Sn</abbr>
+					</li>
+					<li class="metalloid">
+					    <abbr title="Antimony">Sb</abbr>
+					</li>
+					<li class="metalloid">
+					    <abbr title="Tellurium">Te</abbr>
+					</li>
+					<li class="diatomic-nonmetal">
+					    <abbr title="Iodine">I</abbr>
+					</li>
+					<li class="noble-gas">
+					    <abbr title="Xenon">Xe</abbr>
+					</li>
+					<li class="alkali">
+					    <abbr title="Caesium">Cs</abbr>
+					</li>
+					<li class="alkaline">
+					    <abbr title="Barium">Ba</abbr>
+					</li>
+					<li class="lanthanide">
+					    <abbr title="Lanthanum">La</abbr>
+					</li>
+					<li id="cerium" class="lanthanide">
+					     <abbr title="Cerium">Ce</abbr>
+					</li>
+					<li class="lanthanide">
+					    <abbr title="Praseodymium">Pr</abbr>
+					</li>
+					<li class="lanthanide">
+					    <abbr title="Neodymium">Nd</abbr>
+					</li>
+					<li class="lanthanide">
+					    <abbr title="Promethium">Pm</abbr>
+					</li>
+					<li class="lanthanide">
+					    <abbr title="Samarium">Sm</abbr>
+					</li>
+					<li class="lanthanide">
+					    <abbr title="Europium">Eu</abbr>
+					</li>
+					<li class="lanthanide">
+					    <abbr title="Gadolinium">Gd</abbr>
+					</li>
+					<li class="lanthanide">
+					    <abbr title="Terbium">Td</abbr>
+					</li>
+					<li class="lanthanide">
+					    <abbr title="Dysprosium">Dy</abbr>
+					</li>
+					<li class="lanthanide">
+					    <abbr title="Holmium">Ho</abbr>
+					</li>
+					<li class="lanthanide">
+					    <abbr title="Erbium">Er</abbr>
+					</li>
+					<li class="lanthanide">
+					    <abbr title="Thulium">Tm</abbr>
+					</li>
+					<li class="lanthanide">
+					    <abbr title="Ytterbium">Yb</abbr>
+					</li>
+					<li class="lanthanide">
+					    <abbr title="Lutetium">Lu</abbr>
+					</li>  
+					<li id="hafnium">
+					    <abbr title="Hafnium">Hf</abbr>
+					</li>
+					<li>
+					    <abbr title="Tantalum">Ta</abbr>
+					</li>
+					<li>
+					    <abbr title="Tungsten">W</abbr>
+					</li>
+					<li>
+					    <abbr title="Rhenium">Re</abbr>
+					</li>
+					<li>
+					    <abbr title="Osmium">Os</abbr>
+					</li> 
+					<li>
+					    <abbr title="Iridium">Ir</abbr>
+					</li>
+					<li>
+					    <abbr title="Platinum">Pt</abbr>
+					</li>
+					<li>
+					    <abbr title="Gold">Au</abbr>
+					</li>
+					<li>
+					    <abbr title="Mercury">Hg</abbr>
+					</li>
+					<li>
+					    <abbr title="Thallium">Tl</abbr>
+					</li>
+					<li>
+					    <abbr title="Lead">Pb</abbr>
+					</li>
+					<li>
+					    <abbr title="Bismuth">Bi</abbr>
+					</li>
+					<li>
+					    <abbr title="Polonium">Po</abbr>
+					</li>
+					<li class="metalloid">
+					    <abbr title="Astatine">At</abbr>
+					</li>
+					<li class="noble-gas">
+					    <abbr title="Radon">Rn</abbr>
+					</li>
+					<li class="alkali">
+					    <abbr title="Francium">Fr</abbr>
+					</li>
+					<li class="alkaline">
+					    <abbr title="Radium">Ra</abbr>
+					</li>
+					<li class="actinide">
+					    <abbr title="Actinium">Ac</abbr>
+					</li>
+					<li class="actinide" id="thorium" >
+					    <abbr title="Thorium">Th</abbr>
+					</li>
+					<li class="actinide">
+					    <abbr title="Protactinium">Pa</abbr>
+					</li>
+					<li class="actinide">
+					    <abbr title="Uranium">U</abbr>
+					</li>
+					<li class="actinide">
+					    <abbr title="Neptunium">Np</abbr>
+					</li>
+					<li class="actinide">
+					    <abbr title="Plutonium">Up</abbr>
+					</li>
+					<li class="actinide">
+					    <abbr title="Americium">Am</abbr>
+					</li>
+					<li class="actinide">
+					    <abbr title="Curium">Cm</abbr>
+					</li>
+					<li class="actinide">
+					    <abbr title="Berkelium">Bk</abbr>
+					</li>
+					<li class="actinide">
+					    <abbr title="Californium">Cf</abbr>
+					</li>
+					<li class="actinide">
+					    <abbr title="Einsteinium">Es</abbr>
+					</li>
+					<li class="actinide">
+					    <abbr title="Fermium">Fm</abbr>
+					</li>
+					<li class="actinide">
+					    <abbr title="Mendelevium">Md</abbr>
+					</li>
+					<li class="actinide">
+					    <abbr title="Nobelium">No</abbr>
+					</li>
+					<li class="actinide">
+					    <abbr title="Lawrencium">Lr</abbr>
+					</li>
+					<li id="rutherfordium">
+					    <abbr title="Rutherfordium">Rf</abbr>
+					</li>
+					<li>
+					    <abbr title="Dubnium">Db</abbr>
+					</li>
+					<li>
+					    <abbr title="Seaborgium">Sg</abbr>
+					</li>
+					<li>
+					    <abbr title="Bohrium">Bh</abbr>
+					</li>
+					<li>
+					    <abbr title="Hassium">Hs</abbr>
+					</li>
+					<li class="unknown">
+					    <abbr title="Meitnerium">Mt</abbr>
+					</li>
+					<li class="unknown">
+					    <abbr title="Darmstadtium">Ds</abbr>
+					</li>
+					<li class="unknown">
+					    <abbr title="Roentgenium">Rg</abbr>
+					</li>
+					<li>
+					    <abbr title="Copernicium">Cn</abbr>
+					</li>
+					<li class="unknown">
+					    <abbr title="Nihonium">Cn</abbr>
+					</li>
+					<li class="unknown">
+					    <abbr title="Flerovium">Fl</abbr>
+					</li>
+					<li class="unknown">
+					    <abbr title="Moscovium">Mc</abbr>
+					</li>
+					<li class="unknown">
+					    <abbr title="Livermorium">Lv</abbr>
+					</li>
+					<li class="unknown">
+					    <abbr title="Tennessine">Ts</abbr>
+					</li>
+					<li class="unknown">
+					    <abbr title="Oganesson">Og</abbr>
+					</li>
+					</ol>
+
+	    	</div>
 	  	</main>
 	</div>
 
 </body>
 
-<script type="text/javascript">
-	function forcaPeso() {
-		var valorMassa = document.getElementById('valormassa').value; // VALOR DA MASSA
-		var valorAceleracao = document.getElementById('valoraceleracao').value; // VALOR DA ACELERAÇÃO
-		var resposta = document.getElementById('resposta'); // TEXTO QUE MOSTRA A RESPOSTA
-		var calcularResposta = parseFloat(valorMassa) * parseFloat(valorAceleracao); // CALCULAR RESPOSTA
-		if (valorMassa > 0 && valorAceleracao > 0) {
-			resposta.innerHTML = "Resultado: " + calcularResposta;
-		}
-	}
+<script>
+    particlesJS.load('particles-js', '../js/particlesjs-config.json', function() {
+        $(".particles-js-canvas-el").addClass("animated zoomIn");
+    });
 </script>
 
 </html>	
